@@ -46,7 +46,9 @@ class NumbersList extends Component {
     console.log('Store has: ' + this.props.numbers);
     // Generation of each clickable number
     for(let i = 1; i<=34; i++){
-      let className = "text-center numberslist number-" + i;
+      let setSelected = this.state.clickedNumbers.indexOf(i)>=0 ? "pickednumber" : "";
+      console.log(setSelected);
+      let className = "text-center numberslist number-" + i + ' ' + setSelected;
       numbers.push(
         <NumberInstance
           number={i}
