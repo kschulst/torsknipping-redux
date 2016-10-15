@@ -4,6 +4,7 @@ import RowListing from './RowListing';
 
 class RowContainer extends Component{
   render(){
+    console.log('Passing ' + this.props.numbers + ' to update selected list');
     return(
       <div className="jumbotron col-sm-12">
         <RowListing selectRow={this.props.numbers} />
@@ -19,7 +20,7 @@ RowContainer.PropTypes = {
 
 function mapStateToProps(state, ownProps){
   return {
-    numbers: state.numbers
+    numbers: state.numbers.selectedNumbers
   };
 }
 
