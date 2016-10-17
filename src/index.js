@@ -7,7 +7,6 @@ import TippApp from './components/TippApp';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
-window.store = store;
 
 render(
   <App />,

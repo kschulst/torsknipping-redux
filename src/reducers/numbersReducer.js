@@ -13,6 +13,7 @@ export default function numbersReducer(state = initialState, action) {
             ? {...state,
               selectedNumbers: [...state.selectedNumbers, action.number].sort((a, b) => a - b)}
             : {...state};
+
     case 'RESET_NUMBERS':
       return {
         ...state,

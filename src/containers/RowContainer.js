@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import RowListing from './RowListing';
 
 class RowContainer extends Component{
+
   render(){
     console.log('Passing ' + this.props.numbers + ' to update selected list');
     return(
       <div className="jumbotron col-sm-12">
-        <RowListing selectRow={this.props.numbers} />
+        <RowListing selectRow={this.props.numbers}/>
       </div>
 
     );

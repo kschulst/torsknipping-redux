@@ -14,6 +14,7 @@
   "author": "Bjørn Arve Lagim",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.1",
     "babel-polyfill": "6.8.0",
     "babel-preset-stage-0": "^6.16.0",
     "bootstrap": "3.3.6",
