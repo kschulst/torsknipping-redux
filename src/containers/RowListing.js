@@ -36,7 +36,7 @@ const RowListing = React.createClass({
           console.log(response);
         })
         .catch((error) => {
-          this.checkAlert('Jøye meg! Her gikk det skikkelig skeis.');
+          this.checkAlert('Jøye meg! Her gikk det skikkelig skeis. Prøv igjen.');
           console.log('Oh, man! '+ error);
         })
       : this.checkAlert('Fine tall. Veldig synd med den e-post adressa. You fix?')
