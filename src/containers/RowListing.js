@@ -6,15 +6,17 @@ const RowListing = React.createClass({
   getInitialState(){
     return {
       emailValid : false,
-      text: ''
-    }
+      text: '',
+      alert: ""
+    };
   },
 
   handleChange(event) {
     let isValid = event.target.value.length >= 8 && event.target.value.includes('@');
     this.setState({
       text: event.target.value,
-      emailValid: isValid
+      emailValid: isValid,
+      alert: ""
     });
   },
 
@@ -25,21 +27,25 @@ const RowListing = React.createClass({
         method: 'post',
         url: 'http://gratislotto-api.herokuapp.com/api/Tickets',
         data:{
-          "rows":
-            [
-              this.props.selectRow
-            ],
+          "rows": [ this.props.selectRow ] ,
           "email": this.state.text
-        }
-      })
-        .then(function (response) {
+          }
+        })
+        .then((response) => {
+          this.checkAlert('Der var talla lagra. Lykke til.');
           console.log(response);
         })
         .catch(function (error) {
-          console.log(error);
+          console.log('Oh, man! '+ error);
         })
-      : console.log('Valid email, but not enough numbers.')
-    : console.log('Not enough numbers')
+      : this.checkAlert('Fine tall. Veldig synd med den e-post adressa. You fix?')
+  : this.checkAlert('Ekke nok tall, da vettu. Sju stykker må til.');
+  },
+
+  checkAlert(text){
+    this.setState({
+      alert: text
+    });
   },
 
   render(){
@@ -48,7 +54,7 @@ const RowListing = React.createClass({
     const numberstyle = "text-center selectednumber";
     const validClass = "glyphicon glyphicon-remove-circle validate-mail red";
     const invalidClass = "glyphicon glyphicon glyphicon-ok-circle validate-mail green";
-
+    // Create Selected Number Elements.
     const numbersRow = selectedNumbers.map((paragraph, i) =>
         <RowNumbers className={numberstyle} number={selectedNumbers[i]} key={i} />
       );
@@ -75,6 +81,7 @@ const RowListing = React.createClass({
         {numbersRow}
         <input className="form-control mail-input" placeholder="Your e-mail address" onChange={this.handleChange} value={this.state.text} type="text"/>
         <div className={this.state.emailValid ? invalidClass : validClass}></div>
+        <div>{this.state.alert}</div>
         <button className="btn btn-lg btn-success resetbutton" onClick={this.postNumbers}>Send Tall</button>
       </div>
     );
@@ -82,6 +89,7 @@ const RowListing = React.createClass({
 });
 
 RowListing.PropTypes = {
+  selectRow: React.PropTypes.array,
   className: React.PropTypes.string.isRequired,
   number: React.PropTypes.number.isRequired,
   key: React.PropTypes.number.isRequired

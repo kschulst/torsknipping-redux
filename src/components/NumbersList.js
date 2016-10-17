@@ -16,8 +16,8 @@ class NumbersList extends Component {
   }
 
   render(){
-    //Tell me what the store is.
-    console.log('Store has: ' + this.props.numbers.selectedNumbers);
+    //Tell me what the store is...
+    //console.log('Store has: ' + this.props.numbers.selectedNumbers);
 
     // numbers array for creating all numbers elements.
     let numbers = [];
