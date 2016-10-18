@@ -1,3 +1,5 @@
+/* Old Numberlist
+
 .numberslist{
   cursor: pointer;
   font-size: 20px;
@@ -41,6 +43,66 @@
   opacity: 1;
 }
 
+*/
+.rowbox{
+  height: 240px;
+  width: 240px;
+  background: #fff5fd;
+  border: 3px solid deeppink;
+  display: inline-block;
+}
+
+.rownumber{
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff5fd;
+  background: deeppink;
+  display: inline-block;
+  height: 15.9%;
+  width: 32.6%;
+  margin-left: 2px;
+  margin-top: 2px;
+  vertical-align: top;
+  text-align: center;
+
+}
+
+.numberslist{
+  border: 1px solid deeppink;
+  color: deeppink;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 2em;
+  height: 14.9%;
+  width: 14.9%;
+  display: inline-block;
+  position: relative;
+
+}
+.numberslist .numbercircle{
+  position: absolute;
+  right:0px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  transform: scale(0,0);
+  opacity: 1;
+  background: red;
+  transition: all 100ms linear;
+  border-radius: 50%;
+}
+.numberslist:hover .numbercircle{
+  transform: scale(1,1);
+  opacity: 1;
+}
+.numberslist:hover p{
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  transform: scale(1,1);
+  transform-origin: 50% 50%;
+  color: white;
+}
+
 .selectednumber{
   height: 40px;
   width: 40px;
@@ -60,12 +122,36 @@
 .selectednumber:hover{
   box-shadow: inset 0px 0px 30px black;
 }
+
+.crossed{
+  position: absolute !important;
+  color: black;
+  height: 100%;
+  width: 100%;
+  line-height: inherit !important;
+  text-align: center !important;
+  top: 0px !important;
+  left: 0px;
+  font-size: 32px;
+  visibility: hidden;
+  transform: scale(2);
+  opacity: 0;
+  transition: all 200ms ease-out;
+}
+.crossed.pickednumber{
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+  color: black;
+
+}
+
 .resetbutton{
   margin-top:10px;
   width: 100%;
 }
-.pickednumber{
-  background: red;
+.numberlist.pickednumber{
+  background: #ff008a;
   color: white;
   font-weight: bold;
   transition: all 300ms linear;

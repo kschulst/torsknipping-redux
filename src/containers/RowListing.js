@@ -40,7 +40,8 @@ const RowListing = React.createClass({
           console.log('Oh, man! '+ error);
         })
       : this.checkAlert('Fine tall. Veldig synd med den e-post adressa. You fix?')
-  : this.checkAlert('Ekke nok tall, da vettu. Sju stykker må til.');
+    : this.checkAlert('Ekke nok tall, da vettu. Sju stykker må til.');
+
   },
 
   checkAlert(text){
@@ -55,8 +56,9 @@ const RowListing = React.createClass({
     const numberstyle = "text-center selectednumber";
     const validClass = "glyphicon glyphicon-remove-circle validate-mail red";
     const invalidClass = "glyphicon glyphicon glyphicon-ok-circle validate-mail green";
+
     // Create Selected Number Elements.
-    const numbersRow = selectedNumbers.map((paragraph, i) =>
+    const numbersRow = selectedNumbers.map((elements, i) =>
         <RowNumbers className={numberstyle} number={selectedNumbers[i]} key={i} />
       );
 

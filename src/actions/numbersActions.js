@@ -1,6 +1,6 @@
-export function selectNumber(number){
+export function selectNumber(number, array){
   return {
-    type: 'SELECT_NUMBER', number
+    type: 'SELECT_NUMBER', number, array
   }
 }
 

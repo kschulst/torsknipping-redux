@@ -16,7 +16,7 @@ class TippApp extends Component{
   render(){
     return(
       <div className="col-sm-12">
-        <div className="col-sm-5 jumbotron">
+        <div className="col-sm-12 jumbotron">
           <NumbersContainer />
         </div>
         <div className="col-sm-7">

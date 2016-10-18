@@ -7,8 +7,10 @@ class NumbersList extends Component {
 
   // Called when clicking on a number. Check numbersReducer.js
   selectNumber(number) {
+    let arrayNumber = this.props.rowNumber;
+    console.log('Trying to write to array: ' + arrayNumber);
     this.props.dispatch(numbersActions.selectNumber(number));
-  }
+}
   // Clears the selected numbers from the store.
   resetNumbers(){
     this.props.dispatch(numbersActions.resetNumbers());
@@ -21,9 +23,26 @@ class NumbersList extends Component {
 
     // numbers array for creating all numbers elements.
     let numbers = [];
+    let rekke = this.props.rowNumber +1;
 
-    // Generation of each clickable number
     for(let i = 1; i<=34; i++){
+      let setSelected = this.props.numbers.selectedNumbers.indexOf(i)>=0 ? "pickednumber" : "";
+      let className = "text-center numberslist number-" + i + ' ' + setSelected;
+      let crossed = "glyphicon glyphicon-remove crossed " + setSelected;
+      numbers.push(
+          <NumberInstance
+            number={i}
+            key={i}
+            className={className}
+            crossed={crossed}
+            clickedNumbers={this.props.numbers}
+            showNumber={this.selectNumber.bind(this,i)}
+          />
+      );
+    }
+
+    // Generation of each clickable number. Old Version
+    /*for(let i = 1; i<=34; i++){
       let setSelected = this.props.numbers.selectedNumbers.indexOf(i)>=0 ? "pickednumber" : "";
       let className = "text-center numberslist number-" + i + ' ' + setSelected;
       numbers.push(
@@ -35,16 +54,14 @@ class NumbersList extends Component {
           showNumber={this.selectNumber.bind(this,i)}
         />
       );
-    }
+    }*/
 
     // DOM output
     return(
-      <div>
-        {numbers}
-        <div>
-          <button className="btn btn-lg btn-danger resetbutton" onClick={() => {this.resetNumbers(); console.log('You have no numbers selected');}}>Reset</button>
+        <div className="rowbox">
+          {numbers}
+          <div className="rownumber">{rekke}</div>
         </div>
-      </div>
     );
   }
 }

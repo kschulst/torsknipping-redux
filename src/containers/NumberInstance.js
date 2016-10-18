@@ -7,6 +7,7 @@ class NumberInstance extends Component {
            onClick={()=> this.props.showNumber(this.props.number)}>
         <div className="numbercircle"></div>
         <p>{this.props.number}</p>
+        <div className={this.props.crossed}></div>
       </div>
     )
   }
