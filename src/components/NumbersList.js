@@ -8,13 +8,7 @@ class NumbersList extends Component {
   // Called when clicking on a number. Check numbersReducer.js
   selectNumber(number) {
     let arrayNumber = 'row' + this.props.rowNumber;
-    console.log('Trying to write to array: ' + arrayNumber);
     this.props.dispatch(numbersActions.selectNumber(number, arrayNumber));
-}
-  // Clears the selected numbers from the store.
-  resetNumbers(){
-    this.props.dispatch(numbersActions.resetNumbers());
-    console.clear();
   }
 
   render(){

@@ -14,7 +14,6 @@ const initialState = {
 export default function numbersReducer(state = initialState, action) {
   switch(action.type){
     case 'SELECT_NUMBER':
-      console.log('Reducer is getting: ' + action.index);
      return state[action.index].includes(action.number)
         ? {...state,
         [action.index]: state[action.index].filter((num) => num !== action.number)
@@ -27,7 +26,16 @@ export default function numbersReducer(state = initialState, action) {
     case 'RESET_NUMBERS':
       return {
         ...state,
-        selectedNumbers: []
+        row0: [],
+        row1: [],
+        row2: [],
+        row3: [],
+        row4: [],
+        row5: [],
+        row6: [],
+        row7: [],
+        row8: [],
+        row9: [],
       };
     default:
       return state;

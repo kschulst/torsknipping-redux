@@ -23,7 +23,6 @@ function mapStateToProps(state, ownProps){
   return {
     numbers: state.numbers.row0
   };
-  console.log(this.props.numbers);
 }
 
 export default connect(mapStateToProps)(RowContainer);

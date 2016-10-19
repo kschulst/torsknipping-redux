@@ -8,8 +8,7 @@ class TippApp extends Component{
   constructor(){
     super();
     this.state = {
-      clickedNumbers: [],
-      apiresponse:""
+      clickedNumbers: []
     };
   }
 
@@ -20,7 +19,6 @@ class TippApp extends Component{
           <NumbersContainer />
         </div>
         <div className="col-sm-7">
-          <RowContainer />
         </div>
         <div></div>
       </div>

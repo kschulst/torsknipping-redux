@@ -53,7 +53,6 @@ const RowListing = React.createClass({
   render(){
     //selectedNumbers passed from store. Max 7 Numbers.
     const selectedNumbers = this.props.selectRow;
-    console.log(this.props.selectRow);
     const numberstyle = "text-center selectednumber";
     const validClass = "glyphicon glyphicon-remove-circle validate-mail red";
     const invalidClass = "glyphicon glyphicon glyphicon-ok-circle validate-mail green";
@@ -63,23 +62,8 @@ const RowListing = React.createClass({
         <RowNumbers className={numberstyle} number={selectedNumbers[i]} key={i} />
       );
 
-
-//       const numbersRow = []
-//      for loop is redundant. Create a map function instead. for(let i = 1; i<=selectedNumbers.length; i++) {
-//      const className = "text-center selectednumber number-" + i;
-//      numbersRow.push(
-//        <RowNumbers
-//          className={className}
-//          number={selectedNumbers[i - 1]}
-//          key={i}
-//        />
-//      );
-
-
-
     //DOM output of array
     return(
-
       <div className="col-sm-12 text-center">
         <h2>Dine Tall</h2>
         {numbersRow}

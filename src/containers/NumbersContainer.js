@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NumbersList from '../components/NumbersList';
 import ResetButton from '../components/ResetButton';
+import SubmissionForm from '../components/SubmissionForm';
 
 class NumbersContainer extends Component{
   render(){
@@ -18,6 +19,7 @@ class NumbersContainer extends Component{
           <NumbersList rowNumber={8} />
           <NumbersList rowNumber={9} />
           <ResetButton />
+          <SubmissionForm />
         </div>
       </div>
 
