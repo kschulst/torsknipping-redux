@@ -53,6 +53,7 @@ const RowListing = React.createClass({
   render(){
     //selectedNumbers passed from store. Max 7 Numbers.
     const selectedNumbers = this.props.selectRow;
+    console.log(this.props.selectRow);
     const numberstyle = "text-center selectednumber";
     const validClass = "glyphicon glyphicon-remove-circle validate-mail red";
     const invalidClass = "glyphicon glyphicon glyphicon-ok-circle validate-mail green";

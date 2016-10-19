@@ -1,5 +1,4 @@
 const initialState = {
-  selectedNumbers: [],
     row0: [],
     row1: [],
     row2: [],
