@@ -43,7 +43,7 @@ const SubmissionForm = React.createClass({
           }
           })
           .then((response) => {
-            this.checkAlert('Der var talla lagra. Lykke til.');
+            this.checkAlert('Der var talla lagret. Lykke til.');
             console.log(response);
           })
           .catch((error) => {
