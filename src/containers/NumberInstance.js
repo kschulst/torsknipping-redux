@@ -9,7 +9,7 @@ class NumberInstance extends Component {
         <p>{this.props.number}</p>
         <div className={this.props.crossed}></div>
       </div>
-    )
+    );
   }
 }
 

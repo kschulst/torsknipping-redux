@@ -20,7 +20,7 @@ class RowNumbers extends Component {
            onClick={()=> this.removeNumber(this.props.number)}>
         <p>{this.props.number}</p>
       </div>
-    )
+    );
   }
 }
 

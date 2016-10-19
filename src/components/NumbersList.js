@@ -7,9 +7,9 @@ class NumbersList extends Component {
 
   // Called when clicking on a number. Check numbersReducer.js
   selectNumber(number) {
-    let arrayNumber = this.props.rowNumber;
+    let arrayNumber = 'row' + this.props.rowNumber;
     console.log('Trying to write to array: ' + arrayNumber);
-    this.props.dispatch(numbersActions.selectNumber(number));
+    this.props.dispatch(numbersActions.selectNumber(number, arrayNumber));
 }
   // Clears the selected numbers from the store.
   resetNumbers(){
@@ -24,9 +24,9 @@ class NumbersList extends Component {
     // numbers array for creating all numbers elements.
     let numbers = [];
     let rekke = this.props.rowNumber +1;
-
+    let arrayNumber = 'row' + this.props.rowNumber;
     for(let i = 1; i<=34; i++){
-      let setSelected = this.props.numbers.selectedNumbers.indexOf(i)>=0 ? "pickednumber" : "";
+      let setSelected = this.props.numbers[arrayNumber].indexOf(i)>=0 ? "pickednumber" : "";
       let className = "text-center numberslist number-" + i + ' ' + setSelected;
       let crossed = "glyphicon glyphicon-remove crossed " + setSelected;
       numbers.push(
@@ -40,21 +40,6 @@ class NumbersList extends Component {
           />
       );
     }
-
-    // Generation of each clickable number. Old Version
-    /*for(let i = 1; i<=34; i++){
-      let setSelected = this.props.numbers.selectedNumbers.indexOf(i)>=0 ? "pickednumber" : "";
-      let className = "text-center numberslist number-" + i + ' ' + setSelected;
-      numbers.push(
-        <NumberInstance
-          number={i}
-          key={i}
-          className={className}
-          clickedNumbers={this.props.numbers}
-          showNumber={this.selectNumber.bind(this,i)}
-        />
-      );
-    }*/
 
     // DOM output
     return(

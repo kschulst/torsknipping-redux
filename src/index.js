@@ -6,7 +6,7 @@ import App from './head/App';
 import TippApp from './components/TippApp';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-const store = configureStore();
+const store = configureStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
   <App />,
