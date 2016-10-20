@@ -44,10 +44,12 @@
 }
 
 */
+
+
 .rowbox{
   height: 240px;
   width: 240px;
-  background: #fff5fd;
+  /*background: #fff5fd;*/
   border: 3px solid deeppink;
   display: inline-block;
 }
@@ -64,7 +66,9 @@
   margin-top: 2px;
   vertical-align: top;
   text-align: center;
-
+}
+.rownumber.complete{
+  background: green;
 }
 
 .numberslist{

@@ -19,6 +19,7 @@ class NumbersList extends Component {
     let numbers = [];
     let rekke = this.props.rowNumber +1;
     let arrayNumber = 'row' + this.props.rowNumber;
+    let rownumber =  this.props.numbers[arrayNumber].length === 7 ? "rownumber complete" : "rownumber";
     for(let i = 1; i<=34; i++){
       let setSelected = this.props.numbers[arrayNumber].indexOf(i)>=0 ? "pickednumber" : "";
       let className = "text-center numberslist number-" + i + ' ' + setSelected;
@@ -39,7 +40,7 @@ class NumbersList extends Component {
     return(
         <div className="rowbox">
           {numbers}
-          <div className="rownumber">{rekke}</div>
+          <div className={rownumber}>{rekke}</div>
         </div>
     );
   }
