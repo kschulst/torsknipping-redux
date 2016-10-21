@@ -52,7 +52,6 @@ const SubmissionForm = React.createClass({
   },
 
   postNumbers(){
-    this.preFill();
     this.checkAlert('Sender tall. Vent litt...');
     //Validate rows and enter array.
     const validRows = [];
