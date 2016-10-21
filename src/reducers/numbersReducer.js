@@ -1,15 +1,16 @@
 const initialState = {
-    row0: [],
-    row1: [],
-    row2: [],
-    row3: [],
-    row4: [],
-    row5: [],
-    row6: [],
-    row7: [],
-    row8: [],
-    row9: [],
-};
+  row0: [],
+  row1: [],
+  row2: [],
+  row3: [],
+  row4: [],
+  row5: [],
+  row6: [],
+  row7: [],
+  row8: [],
+  row9: [],
+  rows: [[1,2,3,4,5,6,7],[],[],[],[],[],[],[],[],[],[]],
+}
 
 export default function numbersReducer(state = initialState, action) {
   switch(action.type){
@@ -36,6 +37,7 @@ export default function numbersReducer(state = initialState, action) {
         row7: [],
         row8: [],
         row9: [],
+        rows: [[],[],[],[],[],[],[],[],[],[],[]],
       };
     default:
       return state;

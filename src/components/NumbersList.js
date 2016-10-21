@@ -14,7 +14,7 @@ class NumbersList extends Component {
   render(){
     //Tell me what the store is...
     //console.log('Store has: ' + this.props.numbers.selectedNumbers);
-
+    console.log(this.props.rows);
     // numbers array for creating all numbers elements.
     let numbers = [];
     let rekke = this.props.rowNumber +1;
@@ -55,7 +55,8 @@ NumbersList.PropTypes = {
 
 function mapStateToProps(state, ownProps){
   return {
-    numbers: state.numbers
+    numbers: state.numbers,
+    rows: state.rows
   };
 }
 

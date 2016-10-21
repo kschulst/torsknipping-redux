@@ -2,6 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Checkit from 'checkit';
+import * as numbersActions from '../actions/numbersActions';
+
+var Chance = require('chance');
+var chance = new Chance();
 
 const SubmissionForm = React.createClass({
   getInitialState(){
@@ -38,12 +42,22 @@ const SubmissionForm = React.createClass({
     });
   },
 
+  preFill(){
+      this.props.dispatch(numbersActions.resetNumbers());
+      for(let i = 0; i <= 9; i++){
+          let randomRow = chance.unique(chance.natural, 7, {min: 1, max: 34}).sort((a, b) => a - b);
+          let rowName = 'row' + i;
+          randomRow.map((num) => {this.props.dispatch(numbersActions.selectNumber(num, rowName))})
+      }
+  },
+
   postNumbers(){
+    this.preFill();
     this.checkAlert('Sender tall. Vent litt...');
     //Validate rows and enter array.
     const validRows = [];
     const incompleteRows = [];
-    for(let i = 0; i<= 9; i++) {
+    for(let i = 0; i <= 9; i++) {
       let rowname = 'row' + i;
       this.props.numbers[rowname].length === 7
       ? (validRows.push(
@@ -100,6 +114,7 @@ const SubmissionForm = React.createClass({
         <input className="form-control mail-input" placeholder="Your e-mail address" onChange={this.handleChange} value={this.state.text} type="text"/>
         <div className={this.state.emailValid ? invalidClass : validClass}></div>
         <div>{this.state.alert}</div>
+        <button className="btn btn-lg btn-success resetbutton" onClick={this.preFill}>Automatisk Utfylling</button>
         <button className="btn btn-lg btn-success resetbutton" onClick={this.postNumbers}>Send Tall</button>
       </div>
     );
