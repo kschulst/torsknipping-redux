@@ -8,10 +8,10 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-//render(
-//  <App />,
-//  document.getElementById('head')
-//);
+render(
+  <App />,
+  document.getElementById('head')
+);
 
 render(
   <Provider store={store}>
