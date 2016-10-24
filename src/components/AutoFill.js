@@ -23,7 +23,7 @@ class AutoFill extends Component {
   render(){
     return(
       <div className="col-sm-12 text-center">
-        <button className="btn btn-lg btn-success resetbutton" onClick={this.preFill}>Automatisk Utfylling</button>
+        <button className="btn btn-lg btn-success resetbutton" onClick={this.preFill}>Automagisk Utfylling</button>
       </div>
     );
   }

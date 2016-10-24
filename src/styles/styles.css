@@ -44,15 +44,20 @@
 }
 
 */
+.lotterybg{
+  background: url(lotterybg.jpg);
+  background-size: cover;
+  background-position: center;
+}
 
-
-.rowbox{
+.rowbox {
   height: 240px;
   width: 240px;
-  /*background: #fff5fd;*/
+  background: #fff5fd;
   border: 3px solid deeppink;
   display: inline-block;
-  background-image: url(/src/styles/lotterybg.jpg);
+  box-shadow: 6px 6px 10px rgba(0,0,0,0.7);
+
 }
 
 .rownumber{
@@ -83,6 +88,7 @@
   width: 14.9%;
   display: inline-block;
   position: relative;
+  border-radius: 2px;
 
 }
 .numberslist .numbercircle{

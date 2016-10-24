@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as numbersActions from '../actions/numbersActions';
 
 class ResetButton extends Component {
-  constructor(props){
+  constructor(){
     super();
     this.resetNumbers = this.resetNumbers.bind(this);
   }
@@ -19,11 +19,12 @@ class ResetButton extends Component {
     // DOM output
     return(
       <div>
-        <button className="btn btn-lg btn-danger resetbutton" onClick={this.resetNumbers}>Reset</button>
+        <button className="btn btn-lg btn-danger resetbutton" onClick={this.resetNumbers}>Fjern Alle Tall</button>
       </div>
     );
   }
 }
+
 ResetButton.propTypes = {
   dispatch: React.PropTypes.func.isRequired
 };

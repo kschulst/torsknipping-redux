@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import NumbersList from '../components/NumbersList';
-import ResetButton from '../components/ResetButton';
-import SubmissionForm from '../components/SubmissionForm';
-import AutoFill  from '../components/AutoFill';
-import CouponFetch from '../components/CouponFetch';
 
 class NumbersContainer extends Component{
   render(){
     return(
-      <div className="jumbotron col-sm-12">
+      <div className="jumbotron col-sm-12 lotterybg text-center">
         <div>
           <NumbersList rowNumber={0} />
           <NumbersList rowNumber={1} />
@@ -20,13 +16,8 @@ class NumbersContainer extends Component{
           <NumbersList rowNumber={7} />
           <NumbersList rowNumber={8} />
           <NumbersList rowNumber={9} />
-          <AutoFill />
-          <ResetButton />
-          <SubmissionForm />
-          <CouponFetch/>
         </div>
       </div>
-
     );
   }
 }

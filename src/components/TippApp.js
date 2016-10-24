@@ -1,38 +1,29 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import NumbersContainer from '../containers/NumbersContainer';
-import RowContainer from '../containers/RowContainer';
 import '../styles/styles.css';
+import ResetButton from '../components/ResetButton';
+import SubmissionForm from '../components/SubmissionForm';
+import AutoFill  from '../components/AutoFill';
+import CouponFetch from '../components/CouponFetch';
 
 class TippApp extends Component{
-  constructor(){
-    super();
-    this.state = {
-      clickedNumbers: []
-    };
-  }
 
   render(){
     return(
       <div className="col-sm-12">
-        <div className="col-sm-12 jumbotron">
+        <div className="col-sm-12">
           <NumbersContainer />
         </div>
-        <div className="col-sm-7">
+        <div className="col-sm-12 jumbotron">
+          <AutoFill />
+          <ResetButton />
+          <SubmissionForm />
+          <CouponFetch/>
         </div>
-        <div></div>
       </div>
     );
   }
 }
-TippApp.PropTypes = {
-  selectRow: React.PropTypes.array.isRequired
-};
 
-function mapStateToProps(state, ownProps){
-  return {
-    clickedNumbers: state.numbers
-  };
-}
-
-export default connect(mapStateToProps)(TippApp);
+export default TippApp;

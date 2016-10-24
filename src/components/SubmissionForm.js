@@ -48,7 +48,8 @@ const SubmissionForm = React.createClass({
   },
 
   postNumbers(){
-    this.checkAlert('Sender tall. Vent litt...');
+    this.checkAlert('Sender tall. Det jobbes på spreng. Vent litt...');
+
     //Validate rows and enter array.
     const validRows = [];
     const incompleteRows = [];
@@ -63,40 +64,41 @@ const SubmissionForm = React.createClass({
     // for first valid row and submit if valid email as well.
     incompleteRows.length > 0
       ? this.setState({
-          incomplete: 'Rekke ' + incompleteRows + ' er ikke komplett med syv tall.'
+          incomplete: 'Rekke ' + incompleteRows + ' er ikke komplett med syv tall. Det liksom det som er vitsen.'
       })
       : this.setState({
           incomplete: ''
       });
 
+    //pass numbers to a variable. OBS! This is not pretty.
+    let passNumbers = [];
+    for(let i=0; i <= 9; i++){
+      let rowname = 'row' + i;
+      passNumbers.push(this.props.numbers[rowname]);
+    }
+
+    // Check validity and initiate post.
     validRows.length >= 1
         ? this.state.emailValid === true
           ? axios({
           method: 'post',
           url: 'http://gratislotto-api.herokuapp.com/api/Tickets',
           data:{
-            "rows": [
-              this.props.numbers.row0,
-              this.props.numbers.row1,
-              this.props.numbers.row2,
-              this.props.numbers.row3,
-              this.props.numbers.row4,
-              this.props.numbers.row5,
-              this.props.numbers.row6,
-              this.props.numbers.row7,
-              this.props.numbers.row8,
-              this.props.numbers.row9
-            ],
+            "rows":
+              passNumbers
+            ,
             "email": this.state.text
           }
           })
           .then((response) => {
             this.checkAlert('Der var talla lagret. Lykke til.');
+            console.log(response.statusText);
           })
           .catch((error) => {
             this.checkAlert('Jøye meg! Her gikk det skikkelig skeis. Prøv igjen.');
+            console.log(error);
           })
-          : this.checkAlert('Manger en e-post addresse')
+          : this.checkAlert('Manger en e-post addresse. Kommer ikke langt uten nå til dags.')
         : this.checkAlert('Ekke nok tall, da vettu. Sju stykker må til.');
   },
 
@@ -113,11 +115,11 @@ const SubmissionForm = React.createClass({
     //DOM output of array
     return(
       <div className="col-sm-12 text-center">
-        <input className="form-control mail-input" placeholder="Your e-mail address" onChange={this.handleChange} value={this.state.text} type="text"/>
+        <input className="form-control mail-input" placeholder="Fyll inn epost addressa di. Det er påkrevd." onChange={this.handleChange} value={this.state.text} type="text"/>
         <div className={this.state.emailValid ? invalidClass : validClass}></div>
         <div>{this.state.alert}</div>
         <div>{this.state.incomplete}</div>
-        <button className="btn btn-lg btn-success resetbutton" onClick={this.postNumbers}>Send Tall</button>
+        <button className="btn btn-lg btn-success resetbutton" onClick={this.postNumbers}>Send Inn Nippetukong</button>
       </div>
     );
   }
