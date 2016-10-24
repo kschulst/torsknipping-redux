@@ -76,7 +76,7 @@ const RowListing = React.createClass({
   }
 });
 
-RowListing.PropTypes = {
+RowListing.propTypes = {
   selectRow: React.PropTypes.array,
   className: React.PropTypes.string.isRequired,
   number: React.PropTypes.number.isRequired,

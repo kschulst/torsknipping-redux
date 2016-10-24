@@ -4,6 +4,10 @@ import NumberInstance from '../containers/NumberInstance';
 import * as numbersActions from '../actions/numbersActions';
 
 class NumbersList extends Component {
+  constructor(){
+    super();
+    this.selectNumber = this.selectNumber.bind(this);
+  }
 
   // Called when clicking on a number. Check numbersReducer.js
   selectNumber(number) {
@@ -28,7 +32,7 @@ class NumbersList extends Component {
             className={className}
             crossed={crossed}
             clickedNumbers={this.props.numbers}
-            showNumber={this.selectNumber.bind(this,i)}
+            showNumber={this.selectNumber}
           />
       );
     }
@@ -42,18 +46,17 @@ class NumbersList extends Component {
     );
   }
 }
-NumbersList.PropTypes = {
-  numbers: React.PropTypes.shape({
-    selectedNumbers: React.PropTypes.arrayOf(React.PropTypes.number)
-  }).isRequired,
-  selectNumber: React.PropTypes.func.isRequired,
-  resetNumbers: React.PropTypes.func.isRequired
+
+NumbersList.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  numbers: React.PropTypes.objectOf(
+    React.PropTypes.array).isRequired,
+  rowNumber: React.PropTypes.number
 };
 
 function mapStateToProps(state, ownProps){
   return {
-    numbers: state.numbers,
-    rows: state.rows
+    numbers: state.numbers
   };
 }
 

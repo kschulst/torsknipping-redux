@@ -15,7 +15,7 @@ class RowContainer extends Component{
   }
 }
 
-RowContainer.PropTypes = {
+RowContainer.propTypes = {
   numbers: React.PropTypes.array.isRequied
 };
 

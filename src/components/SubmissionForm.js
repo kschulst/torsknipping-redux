@@ -2,17 +2,22 @@ import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Checkit from 'checkit';
-import * as numbersActions from '../actions/numbersActions';
 
-var Chance = require('chance');
-var chance = new Chance();
+const Chance = require('chance');
+const chance = new Chance();
 
 const SubmissionForm = React.createClass({
+  propTypes: {
+    numbers: React.PropTypes.objectOf(React.PropTypes.array).isRequired,
+    className: React.PropTypes.string
+  },
+
   getInitialState(){
     return {
       emailValid : false,
       text: '',
-      alert: ""
+      alert: "",
+      incomplete: ''
     };
   },
 
@@ -42,15 +47,6 @@ const SubmissionForm = React.createClass({
     });
   },
 
-  preFill(){
-      this.props.dispatch(numbersActions.resetNumbers());
-      for(let i = 0; i <= 9; i++){
-          let randomRow = chance.unique(chance.natural, 7, {min: 1, max: 34}).sort((a, b) => a - b);
-          let rowName = 'row' + i;
-          randomRow.map((num) => {this.props.dispatch(numbersActions.selectNumber(num, rowName))})
-      }
-  },
-
   postNumbers(){
     this.checkAlert('Sender tall. Vent litt...');
     //Validate rows and enter array.
@@ -62,10 +58,17 @@ const SubmissionForm = React.createClass({
       ? (validRows.push(
         this.props.numbers[rowname]
       ))
-      : this.props.numbers[rowname].length > 0 && incompleteRows.push(i)
+      : this.props.numbers[rowname].length > 0 && incompleteRows.push(i+1);
     }
-    console.log('Rekke ' + incompleteRows + ' har ikke syv tall');
     // for first valid row and submit if valid email as well.
+    incompleteRows.length > 0
+      ? this.setState({
+          incomplete: 'Rekke ' + incompleteRows + ' er ikke komplett med syv tall.'
+      })
+      : this.setState({
+          incomplete: ''
+      });
+
     validRows.length >= 1
         ? this.state.emailValid === true
           ? axios({
@@ -73,16 +76,16 @@ const SubmissionForm = React.createClass({
           url: 'http://gratislotto-api.herokuapp.com/api/Tickets',
           data:{
             "rows": [
-                    this.props.numbers.row0 ,
-                    this.props.numbers.row1 ,
-                    this.props.numbers.row2 ,
-                    this.props.numbers.row3 ,
-                    this.props.numbers.row4 ,
-                    this.props.numbers.row5 ,
-                    this.props.numbers.row6 ,
-                    this.props.numbers.row7 ,
-                    this.props.numbers.row8 ,
-                    this.props.numbers.row9
+              this.props.numbers.row0,
+              this.props.numbers.row1,
+              this.props.numbers.row2,
+              this.props.numbers.row3,
+              this.props.numbers.row4,
+              this.props.numbers.row5,
+              this.props.numbers.row6,
+              this.props.numbers.row7,
+              this.props.numbers.row8,
+              this.props.numbers.row9
             ],
             "email": this.state.text
           }
@@ -93,7 +96,7 @@ const SubmissionForm = React.createClass({
           .catch((error) => {
             this.checkAlert('Jøye meg! Her gikk det skikkelig skeis. Prøv igjen.');
           })
-          : this.checkAlert('Fine tall. Veldig synd med den e-post adressa. You fix?')
+          : this.checkAlert('Manger en e-post addresse')
         : this.checkAlert('Ekke nok tall, da vettu. Sju stykker må til.');
   },
 
@@ -113,17 +116,12 @@ const SubmissionForm = React.createClass({
         <input className="form-control mail-input" placeholder="Your e-mail address" onChange={this.handleChange} value={this.state.text} type="text"/>
         <div className={this.state.emailValid ? invalidClass : validClass}></div>
         <div>{this.state.alert}</div>
-        <button className="btn btn-lg btn-success resetbutton" onClick={this.preFill}>Automatisk Utfylling</button>
+        <div>{this.state.incomplete}</div>
         <button className="btn btn-lg btn-success resetbutton" onClick={this.postNumbers}>Send Tall</button>
       </div>
     );
   }
 });
-
-SubmissionForm.propTypes = {
-  numbers: React.PropTypes.object.isRequired,
-  className: React.PropTypes.string
-};
 
 function mapStateToProps(state, ownProps){
   return {

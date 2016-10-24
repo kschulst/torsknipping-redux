@@ -52,6 +52,7 @@
   /*background: #fff5fd;*/
   border: 3px solid deeppink;
   display: inline-block;
+  background-image: url(/src/styles/lotterybg.jpg);
 }
 
 .rownumber{
@@ -184,4 +185,11 @@
 }
 .validate-mail.green{
   color: green;
+}
+.half{
+  width: 52% !important;
+}
+.small_submit{
+  width: 40% !important;
+  margin-left: 10px !important;
 }
