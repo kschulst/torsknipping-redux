@@ -73,7 +73,6 @@ const SubmissionForm = React.createClass({
 
     // Abort submission if there are incomplete rows.
     if(incompleteRows > 0){this.checkAlert('');return;}
-    console.log(this.props.numbers);
 
     // Check validity and initiate post.
     validRows.length >= 1
