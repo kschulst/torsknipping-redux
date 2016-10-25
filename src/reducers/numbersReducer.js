@@ -1,5 +1,4 @@
 const initialState = {
-  row0: [],
   row1: [],
   row2: [],
   row3: [],
@@ -9,8 +8,9 @@ const initialState = {
   row7: [],
   row8: [],
   row9: [],
-  rows: [[1,2,3,4,5,6,7],[],[],[],[],[],[],[],[],[],[]],
-}
+  row10: [],
+  email: ''
+};
 
 export default function numbersReducer(state = initialState, action) {
   switch(action.type){
@@ -27,7 +27,6 @@ export default function numbersReducer(state = initialState, action) {
     case 'RESET_NUMBERS':
       return {
         ...state,
-        row0: [],
         row1: [],
         row2: [],
         row3: [],
@@ -37,8 +36,18 @@ export default function numbersReducer(state = initialState, action) {
         row7: [],
         row8: [],
         row9: [],
-        rows: [[],[],[],[],[],[],[],[],[],[],[]],
+        row10: []
       };
+
+    case 'UPDATE_EMAIL':
+      return {...state,
+        email: action.email
+      };
+
+    case 'FILL_NUMBERS':
+      return action.allstate;
+
+
     default:
       return state;
   }

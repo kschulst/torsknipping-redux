@@ -18,7 +18,7 @@ class NumbersList extends Component {
   render(){
     // numbers array for creating all numbers elements.
     let numbers = [];
-    let rekke = this.props.rowNumber +1;
+    let rekke = this.props.rowNumber;
     let arrayNumber = 'row' + this.props.rowNumber;
     let rownumber =  this.props.numbers[arrayNumber].length === 7 ? "rownumber complete" : "rownumber";
     for(let i = 1; i<=34; i++){
@@ -49,8 +49,7 @@ class NumbersList extends Component {
 
 NumbersList.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  numbers: React.PropTypes.objectOf(
-    React.PropTypes.array).isRequired,
+  numbers: React.PropTypes.object.isRequired,
   rowNumber: React.PropTypes.number
 };
 

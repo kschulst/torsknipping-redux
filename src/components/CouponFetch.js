@@ -58,12 +58,11 @@ class CouponFetch extends Component {
           url: `https://gratislotto-api.herokuapp.com/api/Tickets?filter[where][email]=${this.state.text}`
         })
           .then((response) => {
+            console.log(response);
+            delete response.data[0].id;
+            delete response.data[0].registeredTimestamp;
             this.props.dispatch(numbersActions.resetNumbers());
-            for(let i = 0; i <= (response.data[0].rows.length-1); i++){
-              let randomRow = response.data[0].rows[i];
-              let rowName = 'row' + i;
-              randomRow.map((num) => {this.props.dispatch(numbersActions.selectNumber(num, rowName));});
-            }
+            this.props.dispatch(numbersActions.fillNumbers(response.data[0]));
             this.checkAlert('Hværsågod! Tallene er på plass. Antagelig de samme som du lagret.');
           })
           .catch((error) => {

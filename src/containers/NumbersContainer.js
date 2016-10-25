@@ -6,7 +6,6 @@ class NumbersContainer extends Component{
     return(
       <div className="jumbotron col-sm-12 lotterybg text-center">
         <div>
-          <NumbersList rowNumber={0} />
           <NumbersList rowNumber={1} />
           <NumbersList rowNumber={2} />
           <NumbersList rowNumber={3} />
@@ -16,6 +15,7 @@ class NumbersContainer extends Component{
           <NumbersList rowNumber={7} />
           <NumbersList rowNumber={8} />
           <NumbersList rowNumber={9} />
+          <NumbersList rowNumber={10} />
         </div>
       </div>
     );

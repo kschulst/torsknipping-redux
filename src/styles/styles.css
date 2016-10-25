@@ -44,10 +44,16 @@
 }
 
 */
+body{
+  background: black !important;
+}
+
 .lotterybg{
   background: url(lotterybg.jpg);
   background-size: cover;
   background-position: center;
+  width: 100%;
+  padding-bottom: 40px;
 }
 
 .rowbox {
@@ -202,4 +208,37 @@
 
 .torsknipping-logo{
   background: url(torsknipping.jpg);
+  height: 150px;
+  float: left;
+  width: 150px;
+  background-size: cover;
+}
+.head-nav {
+  height: 150px;
+  color: white;
+  width:100%;
+
+
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000428 , #004e92); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000428 , #004e92); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  overflow: visible;
+
+
+}
+.head-logo {
+  background: url(torsknipping.jpg);
+}
+.gratislotto-header{
+  float: left; margin-left: 50px;
+  font-size: 72px;
+  color: cyan;
+  height:100%;
+  line-height: 150px;
+  text-transform: uppercase;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 2px;
+  text-shadow: 0px 0px 5px white;
+
 }

@@ -6,13 +6,15 @@ import ResetButton from '../components/ResetButton';
 import SubmissionForm from '../components/SubmissionForm';
 import AutoFill  from '../components/AutoFill';
 import CouponFetch from '../components/CouponFetch';
+import Head from '../containers/Head';
 
 class TippApp extends Component{
 
   render(){
     return(
       <div className="col-sm-12">
-        <div className="col-sm-12">
+        <div className="lottyerbg">
+          <Head/>
           <NumbersContainer />
         </div>
         <div className="col-sm-12 jumbotron">
@@ -20,6 +22,9 @@ class TippApp extends Component{
           <ResetButton />
           <SubmissionForm />
           <CouponFetch/>
+        </div>
+        <div className="col-sm-12 jumbotron">
+
         </div>
       </div>
     );

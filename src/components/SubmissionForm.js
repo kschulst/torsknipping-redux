@@ -2,13 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Checkit from 'checkit';
+import * as numbersActions from '../actions/numbersActions';
 
 const Chance = require('chance');
 const chance = new Chance();
 
 const SubmissionForm = React.createClass({
   propTypes: {
-    numbers: React.PropTypes.objectOf(React.PropTypes.array).isRequired,
+    numbers: React.PropTypes.object.isRequired,
     className: React.PropTypes.string
   },
 
@@ -35,6 +36,7 @@ const SubmissionForm = React.createClass({
     if(res){
       isValid = true;
       this.checkAlert('');
+      this.props.dispatch(numbersActions.updateEmail(event.target.value));
     }
     if (checkitErr) {
       isValid = false;
@@ -49,19 +51,18 @@ const SubmissionForm = React.createClass({
 
   postNumbers(){
     this.checkAlert('Sender tall. Det jobbes på spreng. Vent litt...');
-
-    //Validate rows and enter array.
+    //Validate rows.
     const validRows = [];
     const incompleteRows = [];
-    for(let i = 0; i <= 9; i++) {
+    for(let i = 1; i <= 10; i++) {
       let rowname = 'row' + i;
       this.props.numbers[rowname].length === 7
       ? (validRows.push(
         this.props.numbers[rowname]
       ))
-      : this.props.numbers[rowname].length > 0 && incompleteRows.push(i+1);
+      : this.props.numbers[rowname].length > 0 && incompleteRows.push(i);
     }
-    // for first valid row and submit if valid email as well.
+
     incompleteRows.length > 0
       ? this.setState({
           incomplete: 'Rekke ' + incompleteRows + ' er ikke komplett med syv tall. Det liksom det som er vitsen.'
@@ -70,12 +71,9 @@ const SubmissionForm = React.createClass({
           incomplete: ''
       });
 
-    //pass numbers to a variable. OBS! This is not pretty.
-    let passNumbers = [];
-    for(let i=0; i <= 9; i++){
-      let rowname = 'row' + i;
-      passNumbers.push(this.props.numbers[rowname]);
-    }
+    // Abort submission if there are incomplete rows.
+    if(incompleteRows > 0){this.checkAlert('');return;}
+    console.log(this.props.numbers);
 
     // Check validity and initiate post.
     validRows.length >= 1
@@ -83,12 +81,8 @@ const SubmissionForm = React.createClass({
           ? axios({
           method: 'post',
           url: 'http://gratislotto-api.herokuapp.com/api/Tickets',
-          data:{
-            "rows":
-              passNumbers
-            ,
-            "email": this.state.text
-          }
+          data:
+            this.props.numbers
           })
           .then((response) => {
             this.checkAlert('Der var talla lagret. Lykke til.');

@@ -9,3 +9,15 @@ export function resetNumbers(){
     type: 'RESET_NUMBERS'
   };
 }
+
+export function updateEmail(email){
+  return {
+    type: 'UPDATE_EMAIL', email
+  };
+}
+
+export function fillNumbers(allstate) {
+  return{
+    type: 'FILL_NUMBERS', allstate
+  }
+}
