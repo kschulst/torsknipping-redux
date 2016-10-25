@@ -7,13 +7,14 @@ import SubmissionForm from '../components/SubmissionForm';
 import AutoFill  from '../components/AutoFill';
 import CouponFetch from '../components/CouponFetch';
 import Head from '../containers/Head';
+import ChartContainer from '../containers/ChartContainer';
 
 class TippApp extends Component{
 
   render(){
     return(
       <div className="col-sm-12">
-        <div className="lottyerbg">
+        <div className="lotterybg">
           <Head/>
           <NumbersContainer />
         </div>
@@ -21,11 +22,9 @@ class TippApp extends Component{
           <AutoFill />
           <ResetButton />
           <SubmissionForm />
-          <CouponFetch/>
+          <CouponFetch />
         </div>
-        <div className="col-sm-12 jumbotron">
-
-        </div>
+        <ChartContainer />
       </div>
     );
   }
